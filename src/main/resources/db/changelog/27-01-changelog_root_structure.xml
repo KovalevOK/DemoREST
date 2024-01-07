@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+    <changeSet id="10" author="KovalevOK">
+        <createTable tableName="product">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="11" author="KovalevOK">
+        <createTable tableName="attribute">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="type" type="varchar(100)"/>
+            <column name="filter_alias" type="varchar(3)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="12" author="KovalevOK">
+        <createTable tableName="value_enumerate">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="value" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="attribute_id" type="bigint">
+                <constraints foreignKeyName="ve_attribute_id" references="attribute(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="13" author="KovalevOK">
+        <createTable tableName="attribute_value">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="value_int" type="int"/>
+
+            <column name="attribute_id" type="bigint">
+                <constraints foreignKeyName="av_attribute_id" references="attribute(id)"/>
+            </column>
+
+            <column name="value_enum_id" type="bigint">
+                <constraints foreignKeyName="av_value_enum_id" references="value_enumerate(id)"/>
+            </column>
+
+            <column name="product_id" type="bigint">
+                <constraints foreignKeyName="av_product_id" references="product(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+    </databaseChangeLog>
+
+

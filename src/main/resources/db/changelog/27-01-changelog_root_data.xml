@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+    <changeSet id="101" author="KovalevOK">
+        <loadData file="data/product.csv"  separator="#" tableName="product" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="102" author="KovalevOK">
+        <loadData file="data/attribute.csv"  separator="#" tableName="attribute" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="103" author="KovalevOK">
+        <loadData file="data/value_enumerate.csv"  separator="#" tableName="value_enumerate" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="104" author="KovalevOK">
+        <loadData file="data/attribute_value.csv"  separator="#" tableName="attribute_value" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    </databaseChangeLog>
+
+
